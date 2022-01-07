@@ -1,0 +1,73 @@
+:host {
+  text-align: center;
+}
+
+nz-header {
+  background: #0097a6;
+  color: #fff;
+  object-position: top;
+}
+
+nz-footer {
+  background: #0097a6;
+  color: #fff;
+  object-position: bottom;
+}
+
+nz-footer {
+  line-height: 1.5;
+}
+
+nz-content {
+  background: whitesmoke;
+  color: black;
+  min-height: 120px;
+  line-height: 120px;
+}
+
+nz-layout {
+  margin-bottom: 48px;
+}
+
+nz-layout nz-layout,
+nz-layout:last-child {
+  margin: 0;
+}
+
+nz-select {
+  width: 200px;
+}
+
+nz-date-picker {
+  margin: 0 8px 12px 0;
+}
+
+.inner-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+
+.ant-advanced-search-form {
+  padding: 24px;
+  background: #fbfbfb;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+}
+
+[nz-form-label] {
+  overflow: visible;
+}
+
+.ant-form-item-control-input-content {
+  flex: none !important;
+  max-width: 100%;
+}
+
+button {
+  margin-left: 8px;
+}
+
+.search-area {
+  text-align: right;
+}
