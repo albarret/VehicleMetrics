@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { tap } from 'rxjs';
-import { Posicao, TempoPermanencia } from './model/tempo-permanencia.model';
+import { TempoPermanencia } from './model/tempo-permanencia.model';
 import { TempoPermanenciaService } from './service/tempo-permanencia.service';
+import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +10,9 @@ import { TempoPermanenciaService } from './service/tempo-permanencia.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title: string = 'VehicleMetricsBeckend';
+  title: string = 'Tempo de Parmanência do Veículo';
 
   validateForm!: FormGroup;
-  selectedDate = null;
   selectedPlaca = null;
   
   dataSet: TempoPermanencia[] = [];
@@ -24,7 +22,14 @@ export class AppComponent implements OnInit {
     { index: 1, label: "Data", fieldName: "data" },
     { index: 2, label: "Placa do Veículo", fieldName: "placa" }
   ];
-  
+
+  lastDayAvailable: Date = new Date();
+  firstDayAvailable: Date = new Date();
+
+  disableDate = (value: Date): boolean => {
+    return value.getTime()>= this.lastDayAvailable.getTime() || value.getTime() <= this.firstDayAvailable.getTime();
+  }
+
   constructor(private fb: FormBuilder, private tpService: TempoPermanenciaService) {}
 
   ngOnInit(): void {
@@ -32,16 +37,24 @@ export class AppComponent implements OnInit {
     this.validateForm = this.fb.group({});
     this.controlArray.forEach(control => {
       this.validateForm.addControl(control.fieldName, new FormControl());
-    })
+    });
 
     this.tpService.getOpcoesSelect().subscribe((opcoes) => {
-      console.log(opcoes);
       if(opcoes) {
         this.placas = opcoes.map((opcao: any) => opcao.placaVeiculo);
       } else {
         this.placas = [];
       }
     });
+
+    this.tpService.getFirstAndLastDaysAvailable().subscribe((days) => {
+      if(days){
+        this.lastDayAvailable = new Date(days.lastDayAvailable);
+
+        this.firstDayAvailable = new Date(days.firstDayAvailable);
+        console.log(this.firstDayAvailable, this.lastDayAvailable);
+      }
+    })
   }
 
   resetForm(): void {

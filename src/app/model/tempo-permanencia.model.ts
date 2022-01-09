@@ -17,3 +17,8 @@ export interface Posicao {
     longitude: Number;
     ignicao: boolean;
 }
+
+export interface Days {
+    firstDayAvailable: Date,
+    lastDayAvailable: Date
+}

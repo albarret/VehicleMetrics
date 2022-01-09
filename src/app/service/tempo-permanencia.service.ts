@@ -2,7 +2,7 @@ import { Time } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Posicao, TempoPermanencia } from '../model/tempo-permanencia.model';
+import { Days, Posicao, TempoPermanencia } from '../model/tempo-permanencia.model';
 
 @Injectable({ providedIn: 'root' })
 export class TempoPermanenciaService {
@@ -20,5 +20,9 @@ export class TempoPermanenciaService {
 
     getOpcoesSelect(): Observable<Posicao[] | undefined> {
         return this.http.get<Posicao[]>(`${this.url}posicao/findToSelect`, this.httpOptions);
+    }
+
+    getFirstAndLastDaysAvailable(): Observable<Days | undefined> {
+        return this.http.get<Days>(`${this.url}posicao/daysAvailable`, this.httpOptions);
     }
 }

@@ -4,7 +4,7 @@
 </a> -->
 
 <nz-layout>
-  <nz-header>Header</nz-header>
+  <nz-header class="">{{title}}</nz-header>
   <nz-content>
     <div class="inner-content">
       <form nz-form [formGroup]="validateForm" class="ant-advanced-search-form" (ngSubmit)="submitForm()">
@@ -13,8 +13,9 @@
             <nz-form-item>
               <nz-form-label [nzFor]="controlArray[0].fieldName">{{controlArray[0].label}}</nz-form-label>
               <nz-form-control>
-                <nz-date-picker [(ngModel)]="selectedDate"
+                <nz-date-picker #dtpkr [(ngModel)]="firstDayAvailable"
                   nzFormat="dd/mm/yyyy"
+                  [nzDisabledDate]="disableDate"
                   [formControlName]="controlArray[0].fieldName"
                   style="flex: none;"
                 ></nz-date-picker>
@@ -40,7 +41,7 @@
         </div>
       </form>
       <nz-divider nzType="horizontal"></nz-divider>
-      <nz-table #basicTable [nzData]="dataSet">
+      <nz-table #basicTable [nzData]="dataSet" [nzPageSize]="8">
         <thead>
           <tr>
             <th>Posicao</th>
