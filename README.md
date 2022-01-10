@@ -11,7 +11,7 @@ Acione o comando `npm start` para compilar e subir o servidor. Navegue para `htt
 
 A aplicação funciona de forma bem simples e direta. Existem dois campos no formulário que podem ou não serem preenchidos. O não preenchimento dos campos irá acarretar na busca por todos os resultados possíveis. O preenchimento dos campos atuam como filtros. O botão "Clear" limpa todos os campos e o botão "Search" submete o formulário para recuperar os dados da busca.
 
-**IMPORTANTE**: a base de dados contem informações partinentes do dia 12/12/2018 ao dia 19/12/2018. O componente DatePicker é iniciado vazio, mas ao ser aberto irá sugerir o dia atual.
+**IMPORTANTE**: a base de dados contem informações partinentes do dia 12/12/2018 ao dia 19/12/2018.
 
 ## Outras instruções relevantes para o desenvolvimento em Angular com Angular CLI
 
